@@ -40,17 +40,12 @@ public:
             }
             f=f->next;
         }
-        while(l){
+        if(l){
             f->next=l;
-            l=l->next;
-            f=f->next;
         }
-        while(m){
+        if(m){
             f->next=m;
-            m=m->next;
-            f=f->next;
         }
-        // f->next=nullptr;
         f=s->next;
         delete s;
         return f;
