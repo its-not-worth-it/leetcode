@@ -13,7 +13,7 @@ public:
         vector<bool> vis(n,false); int ans=0;
         for(int i=0;i<n;i++){
             if(!vis[i]){
-                for(int j:t[i]) dfs(t,vis,j);
+                for(int j:t[i]) dfs(t,vis,i);
                 ans++;
             }
         }
