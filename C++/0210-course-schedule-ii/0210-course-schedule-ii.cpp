@@ -1,30 +1,22 @@
 class Solution {
 public:
     vector<int> findOrder(int n, vector<vector<int>>& p) {
-        vector<vector<int>> graph(n);
-        vector<int> ans; ans.reserve(n); vector<bool> vis(n,false), pvis(n,false);
+        vector<int> indegree(n);    vector<vector<int>> nodes(n);
         for(vector<int> i:p){
-            graph[i[1]].emplace_back(i[0]);
+            indegree[i[0]]++;
+            nodes[i[1]].emplace_back(i[0]);
         }
-        for(int i=0;i<n;i++){
-            if(!vis[i] and help(graph,ans,vis,pvis,i,-1) ) return {};
-            
-        }
-        
+        vector<int> ans; ans.reserve(n);
+        queue<int> q; for(int i=0;i<n;i++) if(indegree[i]==0) q.push(i);
 
-        reverse(ans.begin(),ans.end());
-        return ans;
-    }
-    
-    bool help(vector<vector<int>> &graph,vector<int> &ans, vector<bool> &vis, vector<bool> &pvis, int i, int p){
-        vis[i]=true; pvis[i]=true;
-        for(int j:graph[i]){
-            if(!vis[j]) {
-                if(help(graph,ans,vis,pvis,j,i)) return true;
-            }else if(vis[j] and pvis[j] ) return true;
+        while(!q.empty()){
+            for(int i:nodes[q.front()]){
+                indegree[i]--;
+                if(indegree[i]==0) q.push(i);
+            }
+            ans.push_back(q.front()); q.pop();
         }
-        pvis[i]=false;
-        ans.push_back(i);
-        return false;
+        if(n==ans.size()) return ans;
+        return {};
     }
 };
