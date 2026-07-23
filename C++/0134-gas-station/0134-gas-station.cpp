@@ -4,7 +4,7 @@ public:
         int n=gas.size(), ans=0, index=0, m=0;
         for(int i=0;i<n;i++){
             gas[i]-=cost[i];
-            cout<<gas[i]<<" ";
+            // cout<<gas[i]<<" ";
             ans+=gas[i];
             m+=gas[i];
             if(m<0){
