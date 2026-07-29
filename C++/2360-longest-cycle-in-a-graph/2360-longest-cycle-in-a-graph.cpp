@@ -2,8 +2,8 @@ class Solution {
 public:
     int ans;
     int longestCycle(vector<int>& edges) {
-        unordered_map<int,int> cy_map;
         int n=edges.size(), cnt, cy=0;
+        vector<int> cy_map(n,-1);
         vector<int> vis(n,-1);
         ans=-1;
         for(int i=0;i<n;i++){
@@ -16,8 +16,8 @@ public:
         return ans;
 
     }
-    void help(unordered_map<int,int> &cy_map, vector<int> &vis, vector<int> &edges, int &cy, int &cnt, int i){
-        if(cy_map.find(i) != cy_map.end()) {
+    void help(vector<int> &cy_map, vector<int> &vis, vector<int> &edges, int &cy, int &cnt, int i){
+        if(cy_map[i] != -1) {
             if(cy_map[i]==cy) ans=max(ans, cnt-vis[i]);
             return;
         }
