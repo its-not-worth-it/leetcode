@@ -5,10 +5,8 @@ public:
         int i=0, n=intervals.size();
         for(;i<n;i++){
             if(intervals[i][0] > nit[0]) break;
+            ans.push_back(intervals[i]);
         }
-        // cout<<i;
-
-        for(int j=0;j<i;j++) ans.push_back(intervals[j]);
 
         if(ans.empty() or ( ans.back()[1]< nit[0]) ) ans.push_back(nit);
         else ans.back()[1]=max(ans.back()[1], nit[1]);
