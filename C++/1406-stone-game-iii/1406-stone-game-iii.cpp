@@ -4,7 +4,7 @@ public:
         int n=stoneValue.size();
         vector<int> temp(n,1e9);
         int ans=help(stoneValue, temp, 0);
-        cout<<ans;
+        // cout<<ans;
         if(ans > 0){
             return "Alice";
         }else if(ans < 0) {
