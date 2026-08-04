@@ -8,9 +8,9 @@ public:
         for(int i=1;i<n;i++){
             for(int j=1;j<m;j++){
                 v[i][j]+= (v[i][j-1]+v[i-1][j]-v[i-1][j-1]);
-                cout<<v[i][j]<<" ";
+                // cout<<v[i][j]<<" ";
             }
-            cout<<endl;
+            // cout<<endl;
         }
     }
     
