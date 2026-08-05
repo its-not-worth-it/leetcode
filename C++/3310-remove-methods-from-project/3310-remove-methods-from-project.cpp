@@ -17,22 +17,26 @@ public:
                 }
             }
         }
-        vector<int> ans; ans.reserve(n);
+        
         for(int i=0;i<n;i++){
-            if(!vis[i]) {q.push(i); ans.push_back(i); vis[i]=true;}
+            if(!vis[i]) {q.push(i); vis[i]=true;}
             else vis[i]=false;
         }
-        
+
         while(!q.empty()){
             x=q.front(); q.pop();
             for(int i: graph[x]){
                 if(!vis[i]) {
-                    for(int j=0;j<n;j++){
-                        if(!vis[j]) ans.push_back(j);
-                    }
+                    vector<int> ans(n);
+                    iota(ans.begin(),ans.end(),0);
                     return ans;
                 }
             }
+        }
+
+        vector<int> ans; ans.reserve(n);
+        for(int i=0;i<n;i++){
+            if(vis[i]) ans.push_back(i);
         }
         return ans;
     }
