@@ -1,17 +1,14 @@
 class Solution {
 public:
     int smallestNumber(int n, int t) {
-        int a, temp;
-        while(n){
-            a=n;
-            temp=1;
-            while(a){
-                temp*=a%10;
-                a/=10;
-            }
-            if(temp % t ==0) return n;
-            n++;
-        }
-        return -1;
+        auto [a,b]=div(n,10);
+
+        int req=t/ gcd( max(1,a), t);
+        int nxt;
+        if(b % req==0) nxt=b;
+        else nxt= (b/req +1 ) * req;
+
+        if(nxt < 10) return a*10 + nxt;
+        return (a+1) * 10;
     }
 };
